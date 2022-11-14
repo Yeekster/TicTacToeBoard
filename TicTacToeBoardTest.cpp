@@ -14,5 +14,28 @@ class TicTacToeBoardTest : public ::testing::Test
 		virtual void TearDown(){} //clean up after each test, (before destructor) 
 };
 
+TEST(TicTacToeBoardTest, placePiece){
+	TicTacToeBoard theBoard;
+	Piece test;
+	test = theBoard.placePiece(1, 2);	
+	ASSERT_EQ(test, Piece::X);				//checks if the test piece is equal to X when placed
+}
 
+TEST(TicTacToeBoardTest, toggleTurn){
+	TicTacToeBoard theBoard;
+	Piece test;
+	theBoard.placePiece(1, 2);				//place a piece
+	theBoard.toggleTurn();					//toggle the turn
+	test = theBoard.toggleTurn();			//toggle the turn again
+	ASSERT_EQ(test, Piece::X);				//checks if the test piece is equal to O after a turn has taken place
+}
 
+TEST(TicTacToeBoardTest, getWinner){
+	TicTacToeBoard theBoard;
+	theBoard.placePiece(0, 0);				//place a piece
+	theBoard.placePiece(1, 0);				//place a piece
+	theBoard.placePiece(2, 0);				//place a piece
+	Piece test;
+	test = theBoard.getWinner();
+	ASSERT_EQ(test, Piece::X);				//checks if the test piece is equal to O after a turn has taken place
+}
